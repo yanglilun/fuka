@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--UserMapper，namespace为dao接口-->
+<mapper namespace="com.garen.fuka.dao.UserMapper">
+
+    <insert id="insert">
+        insert into user values (#{uid},#{password},#{uname},#{aiguo},#{fuqiang},#{hexie},#{youshan},#{jingye},#{qq})
+    </insert>
+
+    <update id="updateFukaByUname">
+        update user set
+        aiguo = #{aiguo},
+        fuqiang = #{fuqiang},
+        hexie = #{hexie},
+        youshan = #{youshan},
+        jingye = #{jingye}
+        where
+        uname = #{uname}
+    </update>
+
+    <select id="findUnameByFuka" resultType="user">
+        select * from user
+        where ${fuka} > 1
+    </select>
+
+    <select id="getUserByUname" resultType="user">
+        select * from user where uname = #{uname}
+    </select>
+
+    <select id="getAllUser" resultType="user">
+        select * from user
+        order by
+        uid desc
+    </select>
+
+    <delete id="delete">
+        delete from user
+        where uname = #{uname}
+        and
+        password = #{password}
+    </delete>
+</mapper>
